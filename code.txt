@@ -1,0 +1,63 @@
+	<!-- custom controls-->
+	<div id="divMaster" class="div-Master">
+		<!-- Header row -->
+		<div id = "mapDiv" class = "map-Div">
+			<div id="mapLeft" class = "map-Left"> Base Maps</div>
+
+			<div id="mapRight" class = "map-Right">
+					<div id="content-right" class="map-Right-Content">Thematic Overlay</div>
+			 </div>
+		</div>
+		
+		<!-- Row containing drop down controls -->
+		<div id = "mapDiv2" class = "map-Div">
+			<div id="mapLeft2" class = "map-Left">
+				<div dojoType="dijit.TitlePane" title="Switch Basemap" closable="false" open="false">
+					<div dojoType="dijit.layout.ContentPane" style="width:210px; height:150px; overflow:auto;">
+						<!-- Initial baseMap Gallery -->	
+						<div id="basemapGallery" ></div>			
+					</div>
+				</div>			
+			</div>
+			<div id="mapCentre2" class = "map-Centre">
+					<div id="content-main">
+							<select>
+							  <option>CSO</option>
+							  <option>Wards</option>
+							</select>		
+					</div>
+			 </div>
+
+		</div>
+		
+	<!-- Add the slider controls here -->
+		<div id = "mapDiv3" class = "map-Div">
+			<div id="mapLeft3" class = "map-Left">
+					<div id="slider1" class ="slider"> 
+						
+					</div>			
+			 </div>
+			<div id="mapCentre3" class = "map-Centre">
+					<div id="slider2" class ="slider">
+							
+					</div>
+			 </div>
+		</div>
+
+	<!-- Button events  -->
+		<div id = "mapDiv4" class = "map-Div">
+			<div id="mapLeft2" class = "map-Left">
+					<div id="content-left">
+						<button type="button">Legend</button>
+					</div>			
+			 </div>
+			<div id="mapCentre4" class = "map-Centre">
+					<div id="content-main">
+						<button type="button">Print Map</button>	
+					</div>
+			 </div>
+			<div id="mapRight4" class = "map-Right">
+				<button type="button">Legend</button>
+			 </div>
+		</div>		
+	</div>

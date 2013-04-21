@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=7,IE=9" />
+	<!--The viewport meta tag is used to improve the presentation and behavior of the samples on iOS devices-->
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+
+	<link rel="stylesheet" type="text/css" href="css/div3.css">
+	
+	<!-- Load jQuery and jQuery UI via Google AJAX Libraries API -->
+	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+	
+	<!-- Load external scripts -->
+	<script type="text/javascript" src="js/div.js"></script>	
+	
+	<link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.1/js/dojo/dijit/themes/claro/claro.css">
+    <style>
+      html, body { height: 98%; width: 98%; margin: 0; padding: 5px; }
+    </style>
+    <script type="text/javascript">var djConfig = {parseOnLoad: true};</script>
+    <script type="text/javascript" src="http://serverapi.arcgisonline.com/jsapi/arcgis/?v=3.1"></script>
+
+	<script type="text/javascript">
+
+	dojo.require("dijit.layout.BorderContainer");
+	dojo.require("dijit.layout.ContentPane");
+	dojo.require("dijit.layout.AccordionContainer");
+	dojo.require("esri.map");
+	dojo.require("esri.geometry");
+	dojo.require("esri.layers.wms");
+	
+    dojo.addOnLoad(initializeMap);
+  	  
+	</script>
+
+</head>
+
+<body>
+
+
+
+	<div id="divMaster" class="div-Master">
+		<!-- Header row -->
+		<div id="mapDiv" class="map-Div">
+			<!-- Label for thematic layer-->
+			<div id="mapLeft" class="map-Left">Select Layer</div>
+			<!-- Dropdown to allow you select the layer -->
+			<div id="mapRight" class="map-Centre">
+				<select id="_selectedLayers">
+					<option>CSO</option>
+					<option>Wards</option>
+					<option>Province</option>
+					<option>County</option>
+					<option>Division</option>
+					<option>Location</option>
+					<option>Sub Location</option>
+				</select>
+			</div>
+		</div>
+	
+		<!-- Button events  -->
+		<div id="mapDiv4" class="map-Div">
+			<div id="mapLeft2" class="map-Left">
+				<div id="content-left">
+					<button type="button" id="idLegend">Legend</button>
+				</div>
+			</div>
+			<div id="mapCentre4" class="map-Centre">
+				<div id="content-main">
+					<button type="button" id="_printMap">Print Map</button>
+				</div>
+			</div>
+			<!--   
+					<div id="mapRight4" class = "map-Right">
+						<button type="button">Link</button>
+					 </div>
+				 -->
+		</div>
+	
+		<!-- Row containing output of the controls below-->
+		<div id="mapDiv5" class="map-Div">
+			The quick brown fox jumps over the lazy kanyoni.<br /> The quick
+			brown fox jumps over the lazy kanyoni.<br /> The quick brown fox
+			jumps over the lazy kanyoni.<br /> The quick brown fox jumps over
+			the lazy kanyoni.<br /> The quick brown fox jumps over the lazy
+			kanyoni.<br />
+		</div>
+	
+	</div>
+
+
+	<div id="content" dojotype="dijit.layout.BorderContainer"
+		design="headline" gutters="true"
+		style="width: 70%; height: 100%; margin: 0;">
+		<div id="details" dojotype="dijit.layout.ContentPane" region="left"
+			splitter="true" style="overflow: auto; width: 200px;"></div>
+		<div id="map" dojotype="dijit.layout.ContentPane" region="center"
+			style="overflow: hidden;"></div>
+	</div>
+		
+</body>
+
+</html>

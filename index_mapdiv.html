@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<style type="text/css">
+	
+		body {
+			font-family:arial,helvetica,sans-serif;
+			font-size:12px;
+		}
+		
+		#wrapper {
+			width:600px;
+			margin:0px auto;
+			border:1px solid #bbb;
+			padding:10px;
+		}
+		
+		#header {
+			border:1px solid #bbb;
+			height:80px;
+			padding:10px;
+		}
+		#content {
+			margin-top:10px;
+			padding-bottom:10px;
+		}
+		#content div {
+			padding:10px;
+			border:1px solid #bbb;
+			float:left;
+		}
+			#content-left {
+				width:180px;
+			}
+			#content-main {
+				margin-left:10px;
+				width:180px;
+			}
+			#content-right {
+				margin-left:10px;
+				width:180px;
+			}
+
+		#slider div {
+			padding:10px;
+			border:1px solid #bbb;
+			float:left;
+		}
+			#slider-left {
+				width:180px;
+			}
+			
+			#slider-right {
+				margin-left:10px;
+				width:180px;
+			}			
+			
+		#footer div {
+			padding:10px;
+			border:1px solid #bbb;
+			float:left;
+		}
+			#footer-left {
+				width:180px;
+			}
+			#footer-centre {
+				margin-left:10px;
+				width:180px;
+			}
+			#footer-right {
+				margin-left:10px;
+				width:130px;
+			}
+				
+		#bottom {
+			clear:both;
+			text-align:right;
+		}
+
+	</style>
+	
+	
+	<!-- Load jQuery and jQuery UI via Google AJAX Libraries API -->
+	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
+	<script></script>
+
+</head>
+
+<body>
+
+	<div id="wrapper">
+		<div id="header">Header</div>
+		<div id="content">
+			<div id="content-left">
+				<select>
+					  <option>Google Maps</option>
+					  <option>Bing Maps</option>
+					  <option>Open Street Maps</option>
+				</select>
+			</div>
+			<div id="content-main">
+					<select>
+					  <option>CSO</option>
+					  <option>Wards</option>
+					</select>		
+			</div>
+			<div id="content-right">
+			
+			</div>
+		</div>
+		
+		<div id="slider">
+			<div id="slider-left">
+				<button type="button">Slider 1</button>		
+			</div>		
+			<div id="slider-right">
+				<button type="button">Slider 2</button>
+			</div>
+			
+		</div>
+		
+		<div id="footer">
+			<div id="footer-left">
+				<button type="button">Legend</button>		
+			</div>
+			
+			<div id="footer-centre">
+				<button type="button">Printable Map</button>
+			</div>
+			
+			<div id="footer-right">
+				<button type="button">Legend</button>
+			</div>
+			
+		</div>
+		<div id="bottom">
+			
+		</div>
+	</div>
+
+</body>
+</html>

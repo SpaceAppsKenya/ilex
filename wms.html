@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+    <title>WMS</title>
+
+    <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/1.6/js/dojo/dijit/themes/soria/soria.css">
+    <script type="text/javascript" src="http://serverapi.arcgisonline.com/jsapi/arcgis/?v=1.6"></script>
+
+    <script type="text/javascript">
+      dojo.require("esri.map");
+
+      dojo.declare("my.KenyaCounty", esri.layers.DynamicMapServiceLayer, {
+        constructor: function() {
+          this.initialExtent = this.fullExtent = new esri.geometry.Extent({ 
+        	  xmin: 3775046.4738936885, 
+        	  ymin: -524042.971233079, 
+        	  xmax: 4664983.260355012, 
+        	  ymax: 605444.2138547461, 
+        	  spatialReference: new esri.SpatialReference({wkid: 3857})}); 
+          
+          this.spatialReference = new esri.SpatialReference({wkid:3857});
+
+          this.loaded = true;
+          this.onLoad(this);
+        },
+
+        getImageUrl: function(extent, width, height, callback) {
+          var params = {
+            request:"GetMap",
+            transparent:true,
+            format:"image/png",
+            bgcolor:"ffffff",
+            version:"1.1.1",
+            layers:"kenya:county_wma",
+            styles: "default,default",
+            exceptions: "application/vnd.ogc.se_xml",
+
+            //changing values
+            bbox:extent.xmin + "," + extent.ymin + "," + extent.xmax + "," + extent.ymax,
+            srs: "EPSG:" + extent.spatialReference.wkid,
+            width: width,
+            height: height
+          };
+
+          callback("http://localhost:8080/geoserver/kenya/wms?" + dojo.objectToQuery(params));
+        }
+      })
+
+      function init() {
+        var map = new esri.Map("map");
+        map.addLayer(new esri.layers.ArcGISTiledMapServiceLayer("http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer"));
+        map.addLayer(new my.KenyaCounty());
+      }
+
+      dojo.addOnLoad(init);
+    </script>
+
+  </head>
+  <body>
+    <div id="map" class="soria" style="position:relative; width:1024px; height:512px; border:2px solid #000;"></div>
+  </body>
+</html>

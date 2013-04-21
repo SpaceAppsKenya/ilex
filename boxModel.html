@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/div3.css">
+	
+	<!-- Load jQuery and jQuery UI via Google AJAX Libraries API -->
+	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+	<script src="http://code.jquerygeo.com/jquery.geo-1.0a4.min.js"></script>
+
+	<script type="text/javascript">
+	  $(document).ready(function() {
+		//console.log(document.getElementById('mapDiv4').style.width);
+	  });
+	  
+	</script>
+	
+	<style>
+		#map {
+			width: 90%;
+			max-width: 640px;
+			height: 480px;
+			padding: 8px;
+			border: solid 3px #444;
+			margin: .5em;
+			background: #ddf;
+		}
+		#bar {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			padding: 16px;
+			background: #ccc;
+			opacity: .8;
+			border-radius: 8px;
+			text-align: center;
+			font-size: 10px;
+		}
+		#bar div {
+			width: 96px;
+			height: 2px;
+			margin-bottom: 8px;
+			background: #444;
+			color: #444;
+		}		
+	</style>
+
+</head>
+
+<!-- Avoid scroll bars in the body elements-->
+<body style>
+
+<div id="map">
+	<div id="bar">
+		<div></div>
+		<span>1134 meters</span>
+	</div>>
+</div>
+
+<script>
+  $(function() {
+    $( "#map" ).geomap( ); // you've got a map!
+  });
+</script>
+
+</body>
+
+</html>

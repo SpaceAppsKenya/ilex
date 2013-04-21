@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+	<link rel="stylesheet" type="text/css" href="css/div3.css">
+	
+	<!-- Load jQuery and jQuery UI via Google AJAX Libraries API -->
+	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+	<script src="http://code.jquerygeo.com/jquery.geo-1.0a4.min.js"></script>
+
+	<script type="text/javascript">
+	  $(document).ready(function() {
+		//console.log(document.getElementById('mapDiv4').style.width);
+	  });
+	  
+	</script>
+
+</head>
+
+<!-- Avoid scroll bars in the body elements-->
+<body style="overflow: hidden;">
+
+<div id="map" style="position: absolute; top: 0; right: 0; bottom: 0; left: 0;"></div>
+
+
+
+<script>
+  $(function() {
+    $( "#map" ).geomap( ); // you've got a map!
+  });
+</script>
+
+</body>
+
+</html>

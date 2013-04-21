@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html>  
+  <head> 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=7,IE=9" />
+    <!--The viewport meta tag is used to improve the presentation and behavior of the samples 
+      on iOS devices-->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <!-- Title goes here -->
+	<title>Community Service Organizations</title> 
+
+    <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.0/js/dojo/dijit/themes/claro/claro.css">    
+
+    <!-- Style element goes here -->
+	<link rel="stylesheet" type="text/css" href="css/layout.css">
+	
+	<!-- ArcGIS Javascript Stylesheets -->
+	
+	<link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/2.5/js/esri/dijit/css/Popup.css"/>
+	<link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/2.0/js/dojo/dojox/grid/resources/Grid.css">
+	<link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/2.0/js/dojo/dojox/grid/resources/tundraGrid.css">
+	<link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/2.5/js/dojo/dijit/themes/claro/claro.css">
+	
+	
+	<!-- Load jQuery and jQuery UI via Google AJAX Libraries API-->
+	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
+	<!-- ArcGIS Javascript API's -->
+	<script type="text/javascript" src="http://serverapi.arcgisonline.com/jsapi/arcgis/?v=3.0"></script>
+	
+	<!-- Load external scripts -->
+	<script type="text/javascript" src="js/csoMap.js"></script>		
+	<script type="text/javascript" src="js/csoWin.js"></script>	
+	
+    <script type="text/javascript"> 
+      var djConfig = {
+        parseOnLoad: true
+      };
+    </script> 
+    <script type="text/javascript" src="http://serverapi.arcgisonline.com/jsapi/arcgis/?v=3.0"></script>
+    
+    <script type="text/javascript"> 
+	  dojo.require("dijit.dijit"); // optimize: load dijit layer
+      dojo.require("dijit.layout.BorderContainer");
+      dojo.require("dijit.layout.ContentPane");
+      dojo.require("esri.map");
+      dojo.require("esri.virtualearth.VETiledLayer");
+      dojo.require("dijit.TitlePane");
+      dojo.require("esri.dijit.BasemapGallery");
+      dojo.require("esri.arcgis.utils");
+      //show map on load 
+      dojo.addOnLoad(init);
+    </script> 
+  
+  </head> 
+
+	<body class="claro"> 
+		<!-- Map area-->
+		<div id="base" dojotype="dijit.layout.BorderContainer" design="headline" gutters="false">
+			<div id="map" dojotype="dijit.layout.ContentPane" region="center">
+			  <div style="position:absolute; right:20px; top:10px; z-Index:999;">
+				<div dojoType="dijit.TitlePane" title="Switch Basemap" closable="false"  open="false">
+				  <div dojoType="dijit.layout.ContentPane" style="width:380px; height:280px; overflow:auto;">
+				  <div id="basemapGallery" ></div></div>
+				</div>
+			  </div>
+			</div>		
+		</div>
+
+	</body> 
+
+</html>

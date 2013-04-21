@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Load jQuery and jQuery UI via Google AJAX Libraries API -->
+	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
+	<script>
+		$(document).ready(function() {
+			$('#clickme').click(function() {
+			  $('#main').animate({
+				'marginTop' : "+=60px",
+				'marginLeft' : "+=40px"
+			  }, 1500, function() {
+				// Animation complete.
+			  });
+			  console.log(document.getElementById('main').style.width);
+			  console.log(document.getElementById('main').style.marginTop);
+			  console.log(document.getElementById('main').style.marginLeft);
+			});
+		});
+		
+	</script>
+
+</head>
+
+<body>
+
+<div id="clickme">
+  Click here
+</div>
+
+<div id="main"> 
+	<div id="title"></div>
+	<div id="content"> 
+	
+		<div>
+		<table border="1" cellpadding="5">
+		  <tr>
+			<th>Base Maps</th>
+			<th>Thematic Overlay</th>
+		  </tr>
+			<tr>
+				<td> 			
+					<select>
+					  <option>Google Maps</option>
+					  <option>Bing Maps</option>
+					  <option>Open Street Maps</option>
+					</select>
+				</td>
+				<td> 		
+					<select>
+					  <option>CSO</option>
+					  <option>Wards</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td><div id="slider"></div></td>
+				<td><div id="slider2"></div></td>
+			</tr>
+			<tr>
+				<td><button type="button">Legend</button></td>
+				<td><button type="button">Printable Map</button></td>
+				<td><button type="button">Legend</button></td>
+			</tr>		
+		</table>
+		</div>
+	</div>	
+		
+</div>
+</body>
+</html>

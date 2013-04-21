@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<style type="text/css">
+	
+	.map-Div {
+		position:relative;
+		float:left;
+		clear:left;
+		border:1px solid #bbb;
+		margin-top: 5px;
+		margin-right: 0px;
+		margin-bottom: 3px;
+		margin-left: 0px;
+	}
+	
+	.map-Left {
+		position:relative;	
+		float:left;
+		padding : 3px;
+		color : #000000;
+	}
+	
+	.map-Centre {
+		position:relative;
+		float:left;
+		margin-left :0px;
+		margin-top :0px;
+		color : #000000;
+		padding : 3px;
+	}
+	.map-Right {
+		position:relative;
+		float:left;
+		padding-left : 10px;
+		z-index : 3;
+		color : #000000;
+		padding : 3px;
+	}
+
+
+	</style>
+	
+	
+	<!-- Load jQuery and jQuery UI via Google AJAX Libraries API -->
+	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
+	<script></script>
+
+</head>
+
+<body>
+	<div id = "mapDiv" class = "map-Div">
+		<div id="mapLeft" class = "map-Left"> Base Maps</div>
+
+		<div id="mapRight" class = "map-Right">
+				<div id="content-right">Thematic Overlay</div>
+		 </div>
+	</div>
+	
+		<div id = "mapDiv2" class = "map-Div">
+		<div id="mapLeft2" class = "map-Left">
+				<div id="content-left">
+					<select>
+						  <option>Google Maps</option>
+						  <option>Bing Maps</option>
+						  <option>Open Street Maps</option>
+					</select>
+				</div>			
+		 </div>
+		<div id="mapCentre2" class = "map-Centre">
+				<div id="content-main">
+						<select>
+						  <option>CSO</option>
+						  <option>Wards</option>
+						</select>		
+				</div>
+		 </div>
+		<div id="mapRight2" class = "map-Right">
+				<div id="content-right">
+						<select>
+						  <option>Kanyau</option>
+						  <option>Cat</option>
+						  <option>Paka</option>
+						</select>	
+				</div>
+		 </div>
+	</div>
+	
+</body>
+</html>

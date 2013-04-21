@@ -1,0 +1,257 @@
+/*
+ * Code written by David Muthami
+ * Code manages the maps window components
+ */
+
+var map = null;
+;
+/*
+ * Other variables declared here
+ */
+var mapWindow_intial;//px
+var mapWindow_expanded; //px
+
+/*
+ * Initialize base map
+ */
+function initBaseMap() {
+
+
+	var initExtent = new esri.geometry.Extent({"xmin":2524000,"ymin":-477000,"xmax":5866000,"ymax":585000,"spatialReference":{"wkid":102100}});
+	map = new esri.Map("map",{extent:initExtent});
+
+
+	var initBasemap = new esri.layers.ArcGISTiledMapServiceLayer("http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer");
+	map.addLayer(initBasemap);
+
+	createBasemapGallery();
+
+	//resize the map when the browser resizes
+	dojo.connect(dijit.byId('map'), 'resize', map,map.resize);
+
+	//Load other maps
+	init();
+}
+
+/*
+ * Create basemap gallery
+ */
+function createBasemapGallery() {
+	//add the basemap gallery, in this case we'll display maps from ArcGIS.com including bing maps
+	var basemapGallery = new esri.dijit.BasemapGallery({
+		showArcGISBasemaps: true,
+		//bingMapsKey: 'Enter your Bing Maps Key',
+		toggleReference: true,
+			googleMapsApi: {
+			v: '3.6' // use a specific version is recommended for production system.
+		},
+		map: map
+	}, "basemapGallery");
+
+	basemapGallery.startup();
+
+	dojo.connect(basemapGallery, "onError", function(msg) {console.log(msg)});
+}
+
+/*
+ * Load the maps window 
+ */
+function init(){
+
+	try{
+		$(document).ready(function(){
+		//create a template for floating div element for the maps component
+		//createMapsDiv();		
+			callCreateMapsDropDownWindow();
+		});		
+	}
+	catch(ex){console.log("csoWin:init = "+ ex);}
+
+}
+ /*
+ * Call create maps dropdown window
+ */
+function callCreateMapsDropDownWindow(){
+	try{
+		
+		//initialize variables
+		initiliazeMapVariables();
+		//First create maps div element and other controls
+		createMapsDiv();
+		//Then create drop down window for maps
+		CreateDropdownWindow('Dynamic Maps', mapWindow_intial + 'px', true, "map");	
+		
+		/*
+		 * Should this work then we should load the basemap widget here
+		 *  Call map intialize procedure
+		 *  show map on load
+		 *	mapInit();
+		 */	
+		//mapInit();
+		//style the inner html components
+		addMapEvents();
+	}
+	catch(ex){console.log("csoMap:callCreateMapsDropDownWindow = "+ ex);}
+	finally {
+		console.log("csoMap:callCreateMapsDropDownWindow:mapWindow_intial = "+ mapWindow_intial.toString());
+	}
+}
+
+ /*
+ * Initialize all variables for this javascript function
+ */
+ function initiliazeMapVariables(){
+ 
+ 		mapWindow_intial = parseInt(120); 
+		mapWindow_expanded = parseInt(260);
+ }
+ 
+/*
+ * Create maps div
+ */
+var divTitle;
+function createMapsDiv(){
+	try{
+		/*
+		 * Create header div
+		 * Modifying the style and id properties
+		 * Adding the div element as a child of the existing body element
+		 */
+		divTitle = document.createElement("div");
+		
+		//Need to keep this div element hidden else its going to be seen in the dom
+		divTitle.style.display="none";
+		
+		divTitle.id="mapsDiv";
+		/*
+		 * Create content div as a chicld of header div created above
+		 * Modifying the style and id properties
+		 * Adding the div element as a child of the existing body element
+		 *
+		 * style="font-size:12px;font-family:Arial,Helvetica,sans-serif;background-color:#E0E0E0;padding:5px;"
+		 */
+		
+		divContent = document.createElement("div");
+		divContent.fontSize= AddPx(12);
+		divContent.fontFamily = "Arial,Helvetica,sans-serif";
+		divContent.backgroundColor = "#E0E0E0";
+		divContent.padding = AddPx(5);
+		divContent.innerHTML = buildInnerHTML();		
+		//divTitle.appendChild(divContent);
+		
+		// create the base div element and then add child div elements dynamically
+		
+		divTitle.appendChild(divContent);
+		//get base element
+		//document.body.appendChild(divTitle);
+		var base =document.getElementById('base');
+		var map =document.getElementById('map');
+		base.insertBefore(divTitle,map);
+		//document.getElementById('base').id.appendChild(divTitle);
+		//load add events
+		addMapEvents();
+		
+	} catch(exception){
+		console.log("csoMaps:createMapsDiv "+ exception);
+	}finally {
+		console.log("Base ID: " + document.getElementById('base').id);
+	}	
+	
+	//add CSS Events
+	try{
+		addMapCSS();
+	}
+	catch(ex){console.log("csoMap:addCSSEvents = "+ ex);}
+
+}
+/*
+ * This code builds html for the dynamics map content
+ */
+function buildInnerHTML(){
+var str = ""; 
+	try{		
+		str= ''+
+			'<div id="divMaster" class="div-Master">'+
+					'<div id = "mapDiv" class = "map-Div">'+
+						'<div id="mapLeft" class = "map-Left"> Thematic Overlay</div>'+
+						'<div id="mapRight" class = "map-Centre">'+
+								'<select>'+
+								  '<option>CSO</option>'+
+								  '<option>Wards</option>'+
+								'</select>'+				
+						 '</div>'+
+					'</div>'+	
+					'<div id = "mapDiv2" class = "map-Div">'+
+						'<div id="mapLeft2" class = "map-Left">'+
+							'<div id="mapLeft" class = "map-Left">Transparency</div>'+
+						 '</div>'+
+						'<div id="mapCentre2" class = "map-Centre">'+
+								'<div id="slider1" class ="slider">'+
+								'</div>'+	
+						 '</div>'+
+					'</div>'+
+					'<div id = "mapDiv4" class = "map-Div">'+
+						'<div id="mapLeft2" class = "map-Left">'+
+								'<div id="content-left">'+
+									'<button type="button">Legend</button>'+
+								'</div>'+			
+						 '</div>'+
+						'<div id="mapCentre4" class = "map-Centre">'+
+								'<div id="content-main">'+
+									'<button type="button">Print Map</button>'+	
+								'</div>'+
+						 '</div>'+
+						'<div id="mapRight4" class = "map-Right">'+
+							'<button type="button">Link</button>'+
+						 '</div>'+
+					'</div>'+
+					'<div id = "mapDiv5" class = "map-Div">'+
+						'The quick brown fox jumps over the lazy dog.<br />'+
+						'The quick brown fox jumps over the lazy dog.<br />'+
+						'The quick brown fox jumps over the lazy dog.<br />'+
+						'The quick brown fox jumps over the lazy dog.<br />'+
+						'The quick brown fox jumps over the lazy dog.<br />'+
+					'</div>'+	
+			'</div>';
+	}
+	catch(ex){console.log("buildInnerHTML function = "+ ex);}
+	finally{ 
+		console.log("buildInnerHTML function = "+ str);
+		return str;
+	}
+}
+
+/*
+ * Add map events to div contents created on code
+ */
+function addMapEvents(){
+	try{
+		//programatically apply slider effects
+		$("#slider1").slider();
+		$("#slider2").slider();
+	}
+	catch(ex){console.log("csoMap:addMapEvents = "+ ex);}
+}
+
+/*
+ * Add css to sliders 
+ */
+function addMapCSS(){
+	try{
+		//programatically apply slider effects
+		$("#slider").css("margin" ,"10px"); 
+		$("#slider2").css("margin" ,"10px"); 
+	}
+	catch(ex){console.log("csoMap:addMapCSS = "+ ex);}
+}
+
+/*
+ * getDiv id of the maps component
+ */
+function getMapID(){
+	try{
+		//Get master div element
+		return document.getElementById(divTitle.id);
+	}
+	catch(ex){console.log("csoMap:getMapID = "+ ex);}
+}

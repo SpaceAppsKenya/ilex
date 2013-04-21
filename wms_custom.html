@@ -1,0 +1,87 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+    <title>WMS</title>
+
+    <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/1.6/js/dojo/dijit/themes/soria/soria.css">
+    <script type="text/javascript" src="http://serverapi.arcgisonline.com/jsapi/arcgis/?v=1.6"></script>
+
+    <script type="text/javascript">
+      dojo.require("esri.map");
+      
+      var startExtent = new esri.geometry.Extent({ 
+    	  "xmin":1575000,
+    	  "ymin":-987000,
+    	  "xmax":7445000,
+    	  "ymax":862000,
+    	  spatialReference: new esri.SpatialReference({wkid: 3857})}); 
+      
+      //First, the code declares a new class my.KenyaCounty, which extends the esri.layers.DynamicMapServiceLayer.
+      dojo.declare("my.KenyaCounty", esri.layers.DynamicMapServiceLayer, {
+    	  
+	/*   Next a constructor is defined for the class. The layer's initial and full extents, as 
+         well as its spatial reference, are defined within this constructor. The code also sets the loaded property of the layer to true and calls onLoad.
+       */
+        constructor: function() {
+          this.initialExtent = this.fullExtent = startExtent;
+          this.spatialReference = new esri.SpatialReference({wkid:3857});
+
+          this.loaded = true;
+          this.onLoad(this);
+        },
+
+/*         Finally, the getImageUrl method is implemented. 
+           This method returns the URL of the image to be added to the map. The URL is generated using the extent, 
+           width & height arguments passed in to the function. 
+           The callback is called and the URL string is passed back as the only argument */
+        
+        getImageUrl: function(extent, width, height, callback) {
+        	//***** PAY ATTENTION HERE ******************//
+        	//* The ESRI Example uses a JSON Object which works
+        	//* fine with an ESRIgenerated WMS, but not with
+        	//* WMS’es created by other software. I had change
+        	//* the parameters to a string this section up a bit.
+        	//**********************************************//
+        	
+/*       http://localhost:8080/geoserver/kenya/wms?
+      service=WMS&version=1.1.0&request=GetMap&layers=kenya:county_wma&styles=
+      &bbox=3775046.4738936885,-524042.971233079,4664983.260355012,605444.2138547461&width=403&height=512&srs=EPSG:3857&format=image%2Fjpeg */
+     
+        	var params =
+        	"VERSION=" + "1.3.0" +
+        	"&REQUEST=" + "GetMap" +
+        	"&SRS=EPSG:" + "3857" + /* You need to use the WMS’s spatial wkid */
+        	"&width=" + width +
+        	"&height=" + height +
+        	"&LAYERS=" + "kenya:county_wma" +
+        	"&STYLES=" +
+        	"&FORMAT=" + "image/png" +
+        	"&TRANSPARENT=" + "true" +
+        	"&bbox=" + extent.xmin + "," + extent.ymin + "," + extent.xmax + "," + extent.ymax
+        	"&exceptions=" + "application/vnd.ogc.se_xml"
+        	console.log("params "+ params);
+        	callback("http://localhost:8080/geoserver/kenya/wms?" + params );
+        	
+        }
+      })
+
+      function init() {
+        var map = new esri.Map("map");
+        map.addLayer(new esri.layers.ArcGISTiledMapServiceLayer("http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer"));
+        wmsCountyLayer = new my.KenyaCounty();
+        //wmsCountyLayer.initialExtent = startExtent;
+        map.addLayer(wmsCountyLayer);
+      }
+
+      dojo.addOnLoad(init);
+    </script>
+
+  </head>
+  <body>
+    <div id="map" class="soria" style="position:relative; width:1024px; height:512px; border:2px solid #000;"></div>
+  </body>
+</html>
